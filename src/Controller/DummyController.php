@@ -26,4 +26,37 @@ class DummyController extends AbstractController
             'years' => $tabYear,
         ]);
     }
+
+    #[Route(path:'/news', name: 'app_news')]
+    public function news(): Response
+    {
+        $text = "Welcome to the News Page!";
+        $newsItems = ["News 1", "News 2", "News 3"];
+        return $this->render('dummy/news.html.twig', parameters: [
+            'text' => $text,
+            'newsItems' => $newsItems,
+        ]);
+    }
+
+    #[Route(path:'/contact', name: 'app_contact')]
+    public function contact(): Response
+    {
+        $text = "Get in touch with us!";
+        $contactMethods = ["Email", "Phone", "Address"];
+        return $this->render('dummy/contact.html.twig', parameters: [
+            'text' => $text,
+            'contactMethods' => $contactMethods,
+        ]);
+    }
+
+    #[Route(path:'/about', name: 'app_about')]
+    public function about(): Response
+    {
+        $text = "Learn more about us!";
+        $aboutInfo = ["Mission", "Vision", "Team"];
+        return $this->render('dummy/about.html.twig', parameters: [
+            'text' => $text,
+            'aboutInfo' => $aboutInfo,
+        ]);
+    }
 }
