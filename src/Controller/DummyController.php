@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Form\BookType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -66,12 +67,10 @@ class DummyController extends AbstractController
     {
         $book = new Book();
 
-        $bookForm = $this->createFormBuilder($book)
-            ->add('name', TextType::class) // Symfony\Component\Form\Extension\Core\Type\TextType
-            ->getForm();
+        $bookForm = $this->createForm(type: BookType::class, data: $book);
 
-        return $this->render('dummy/book.html.twig', [
-            'bookForm' => $bookForm->createView(),
+        return $this->render('dummy/book.html.twig', parameters: [
+            'bookForm' => $bookForm
         ]);
     }
 }
