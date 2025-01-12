@@ -8,9 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
-    #[Route('/index', name: 'app_index')]
-    public function index(): Response
+    #[Route('/index/{name}', name: 'app_index')]
+    public function index(string $name): Response
     {
-        return new Response(content: "Hello World!");
+        return new Response(content: "Hello ". $name . " !");
     }
 }
