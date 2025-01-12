@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+index:
+    path: /index/{name}
+    controller: App/Controller/IndexController::index
+    requirements:
+        name: '\d+'
