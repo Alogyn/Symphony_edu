@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -57,6 +58,20 @@ class DummyController extends AbstractController
         return $this->render('dummy/about.html.twig', parameters: [
             'text' => $text,
             'aboutInfo' => $aboutInfo,
+        ]);
+    }
+
+    #[Route(path: '/add-book', name: 'app_book_add')]
+    public function addBook(): Response
+    {
+        $book = new Book();
+
+        $bookForm = $this->createFormBuilder($book)
+            ->add('name', TextType::class) // Symfony\Component\Form\Extension\Core\Type\TextType
+            ->getForm();
+
+        return $this->render('dummy/book.html.twig', [
+            'bookForm' => $bookForm->createView(),
         ]);
     }
 }
